@@ -1,0 +1,24 @@
+<div id="products_container">
+
+  {{#each product}}
+    <div id="products_list"><p>Title: {{name}}</p>
+      <p>description: {{description}}</p>
+      <p>stock: {{stock}}</p>
+      <p>price: {{price}}</p>
+      <p>category: {{category}}</p>
+      <p>code: {{code}}</p>
+      <img id="product_image" src="{{thumbnails}}" alt="SinImagen" srcset="" />
+      <button>Agregar al carrito</button>
+    </div>
+  {{/each}}
+
+</div>
+<div id="container_btn">
+  <button id="product_btn"><a
+      href="http://localhost:8080/api/views/products?limit=5&page={{response.info.prevPage}}"
+    >Prev</a></button>
+  <p id="page_btn">{{response.info.page}}</p>
+  <button id="product_btn"><a
+      href="http://localhost:8080/api/views/products?limit=5&page={{response.info.nextPage}}"
+    >Next</a></button>
+</div>

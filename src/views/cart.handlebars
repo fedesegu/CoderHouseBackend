@@ -1,0 +1,9 @@
+<h2>Carrito</h2>
+
+{{#each response}}
+  <h4>TITLE: {{product.name}}</h4>
+  <p>DESCRIPTION: {{product.description}}</p>
+  <img src={{product.thumbnails}} />
+  <p> Cantidad: {{quantity}}</p>
+  <p>CATEGORY: {{product.category}}</p>
+{{/each}}

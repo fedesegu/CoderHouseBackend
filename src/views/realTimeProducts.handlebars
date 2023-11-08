@@ -1,0 +1,66 @@
+<h2>Agregar Tu producto:</h2>
+<form id="form">
+  <input
+    type="text"
+    name="tittle"
+    id="tittle"
+    placeholder="Nombre del producto"
+    required
+  />
+  <input
+    type="text"
+    name="desc"
+    id="desc"
+    placeholder="Descripcion del producto"
+    required
+  />
+  <input
+    type="number"
+    name="price"
+    id="price"
+    placeholder="Precio del producto"
+    required
+  />
+  <input
+    type="text"
+    name="thumbnail"
+    id="thumbnail"
+    placeholder="Link del producto"
+    required
+  />
+  <input
+    type="number"
+    name="stock"
+    id="stock"
+    placeholder="Stock del producto"
+    required
+  />
+  <input
+    type="text"
+    name="code"
+    id="code"
+    placeholder="Código del producto"
+    required
+  />
+
+  <input type="submit" value="ENVIAR" />
+</form>
+
+<form id="form__delete">
+  <label for="">Que Producto quieres eliminar?</label>
+  <input
+    type="number"
+    name="numberDelete"
+    id="numberDelete"
+    placeholder="Ingrese el id que desea borrar"
+  />
+  <input type="submit" value="Borrar" />
+
+</form>
+
+<div id="listaProducto">
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>;
+<script src="/src/public/index.js"></script>
