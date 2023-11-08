@@ -42,7 +42,7 @@ router.delete("/:idCart", async (req, res) => {
     const response = await cartsManager.deleteAll(idCart);
     res.status(200).json({ message: "Cart delete", cart: response });
   } catch (error) {
-    res.status(500).json({ message: "Error my friend", error: error });
+    res.status(500).json({ message: "Error", error: error });
   }
 });
 
@@ -54,7 +54,7 @@ router.put("/:idCart", async (req, res) => {
     console.log(response);
     res.status(200).json({ message: "Cart update", cart: response });
   } catch (error) {
-    res.status(500).json({ message: "Error my friend" });
+    res.status(500).json({ message: "Error"});
   }
 });
 export default router;

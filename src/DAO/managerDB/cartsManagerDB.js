@@ -1,4 +1,4 @@
-import { cartsModel} from "../../db/models/carts.model.js";
+import {cartsModel} from "../../db/models/carts.model.js";
 
 class CartsManager {
   async findAll() {

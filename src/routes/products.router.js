@@ -14,7 +14,7 @@ router.get("/agg", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const product = await productsManager.findAll(req.query);
-    res.status(200).json({ message: "Producto", product });
+    res.status(200).json({ message: "Product", product });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

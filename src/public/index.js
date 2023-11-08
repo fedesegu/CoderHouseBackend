@@ -1,11 +1,10 @@
-console.log("PROBANDO WEB SOCKET");
+console.log("TESTING WEB SOCKET");
 const socketClient = io();
 
 const form = document.getElementById("form");
-const listaProductos = document.getElementById("listaProducto");
-
-const formBorrar = document.getElementById("form__delete");
-const inputBorrar = document.getElementById("numberDelete");
+const productList = document.getElementById("listaProducto");
+const formDelete = document.getElementById("form__delete");
+const inputDelete = document.getElementById("numberDelete");
 
 const productTitle = document.getElementById("tittle");
 const productDesc = document.getElementById("desc");
@@ -37,7 +36,7 @@ const productsUpdate = (products) => {
   `;
   });
 
-  listaProductos.innerHTML = productsHtml;
+  productList.innerHTML = productsHtml;
 };
 form.onsubmit = (e) => {
   e.preventDefault();
@@ -52,9 +51,9 @@ form.onsubmit = (e) => {
   socketClient.emit("addProduct", producto);
 };
 
-formBorrar.onsubmit = (e) => {
+formDelete.onsubmit = (e) => {
   e.preventDefault();
   let id;
-  id = inputBorrar.value;
+  id = inputDelete.value;
   socketClient.emit("id", id);
 };

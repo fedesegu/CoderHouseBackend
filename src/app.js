@@ -30,10 +30,12 @@ const httpServer = app.listen(8080, () => {
   console.log("Escuchando el puerto 8080");
 });
 
-const socketServer = new Server(httpServer);
 const messages = [];
+
+const socketServer = new Server(httpServer);
+
 socketServer.on("connection", async (socket) => {
-  console.log(`Cliente conectado ${socket.id}`);
+  console.log(`Client connected ${socket.id}`);
   const products = await manager.getProducts({});
   socket.emit("products", products);
 
@@ -44,14 +46,14 @@ socketServer.on("connection", async (socket) => {
     socket.emit("productsUpdated", productsUpdated);
   });
 
-  socket.on("id", async (id) => {
-    await manager.deleteProduct(+id);
-    socket.emit("productsUpdated", products);
-  });
-
   socket.on("message", (info) => {
     messages.push(info);
     socketServer.emit("chat", messages);
+  });
+
+  socket.on("id", async (id) => {
+    await manager.deleteProduct(+id);
+    socket.emit("productsUpdated", products);
   });
 });
 
