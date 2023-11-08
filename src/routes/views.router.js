@@ -79,4 +79,19 @@ router.get("/cart/", async (req, res) => {
   }
 });
 
+router.get("/login", async (req, res) => {
+  if (req.session.user) {
+    return res.redirect("/api/views/products")
+    }
+  res.render("login")
+});
+
+
+router.get("/signup", async (req, res) => {
+  if (req.session.user) {
+    return res.redirect("/api/views/products")
+  }
+  res.render("sign up")
+});
+
 export default router;

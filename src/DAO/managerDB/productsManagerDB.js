@@ -1,6 +1,6 @@
 import { productsModel } from "../../db/models/products.model.js";
 
-class ProductsManager {
+class ProductsManagerDB {
   async findAggre() {
     const result = await productsModel.aggregate([
       {
@@ -60,4 +60,4 @@ class ProductsManager {
   }
 }
 
-export const productsManager = new ProductsManager();
+export const productsManager = new ProductsManagerDB();

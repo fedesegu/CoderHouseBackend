@@ -14,6 +14,10 @@ class UsersManager {
     const response = await usersModel.findById(id);
     return response;
   }
+  async findByEmail(email) {
+    const response = await  usersModel.findOne({email})
+    return response;
+};
 
   async updateOne(id, obj) {
     const response = await usersModel.updateOne({ _id: id }, obj);

@@ -4,17 +4,26 @@ import usersRouter from "./routes/users.router.js";
 import chatRouter from "./routes/chat.router.js";
 import cartsRouter from "./routes/carts.router.js";
 import productsRouter from "./routes/products.router.js";
+import sessionsRouter from "./routes/sessions.router"
+import {manager} from "./DAO/managerFs/productsManager.js"
 import { __dirname } from "./utils.js";
 import { engine } from "express-handlebars";
 import { Server } from "socket.io";
-import { manager } from "../src/DAO/managerFs/productsManager.js";
-
+import MongoStore from "connect-mongo";
+import cookieParser from "cookie-parser";
+import session from "express-session";
 import "./db/configDB.js";
+
+const productManager = new ProductManager();
+const messageManager = new MessageManagerDB();
+const productManagerDB = new ProductManagerDB ();
+
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
+app.use(cookieParser());
 
 app.engine("handlebars", engine());
 app.set("views", __dirname + "/views");
@@ -25,6 +34,7 @@ app.use("/api/views", viewsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/chat", chatRouter);
+app.use("/api/sessions", sessionsRouter);
 
 const httpServer = app.listen(8080, () => {
   console.log("Escuchando el puerto 8080");
@@ -56,4 +66,13 @@ socketServer.on("connection", async (socket) => {
     socket.emit("productsUpdated", products);
   });
 });
+
+app.use(session({ 
+  store: new MongoStore({mongoUrl: URI}),
+  secret: 'secretSession', 
+  cookie: { maxAge: 60000 }
+}))
+
+
+//TRABAJANDO ARCHIVO
 
