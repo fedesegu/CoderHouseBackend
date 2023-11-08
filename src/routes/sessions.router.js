@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { UsersManager } from "../DAO/managerDB/usersManagerDB.js"
+import { usersManager } from "../DAO/managerDB/usersManagerDB.js"
 const router = Router();
-const usersManager = new UsersManager();
+
 
 router.post("/signup", async (req, res) => {
     const { name, last_name, email, password } = req.body
@@ -43,7 +43,7 @@ router.post("/signup", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-routerS.get("/signout", async (req, res) => {
+router.get("/signout", async (req, res) => {
     req.session.destroy(() => { res.redirect("/api/views/login") })
 });
 export default router;

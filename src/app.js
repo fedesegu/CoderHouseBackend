@@ -4,8 +4,9 @@ import usersRouter from "./routes/users.router.js";
 import chatRouter from "./routes/chat.router.js";
 import cartsRouter from "./routes/carts.router.js";
 import productsRouter from "./routes/products.router.js";
-import sessionsRouter from "./routes/sessions.router"
-import {manager} from "./DAO/managerFs/productsManager.js"
+import sessionsRouter from "./routes/sessions.router.js"
+import {productsManager} from "./DAO/managerDB/productsManagerDB.js"
+import { messagesManager } from "./DAO/managerDB/messageManager.js";
 import { __dirname } from "./utils.js";
 import { engine } from "express-handlebars";
 import { Server } from "socket.io";
@@ -14,11 +15,9 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import "./db/configDB.js";
 
-const productManager = new ProductManager();
-const messageManager = new MessageManagerDB();
-const productManagerDB = new ProductManagerDB ();
 
 const app = express();
+const URI = "mongodb+srv://federicosegu:Abeyp231@cluster0.gjwkb4d.mongodb.net/PreEntregaDos?retryWrites=true&w=majority";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -74,5 +73,5 @@ app.use(session({
 }))
 
 
-//TRABAJANDO ARCHIVO
+
 
